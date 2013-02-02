@@ -9,7 +9,6 @@ module CarrierWave
     end
  
     def resample( bitrate )
-debugger
       directory = File.dirname( current_path )
       tmp_path   = File.join( directory, "tmpfile" )
       FileUtils.mv( current_path, tmp_path )

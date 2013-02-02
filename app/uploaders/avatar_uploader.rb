@@ -59,7 +59,6 @@ class AvatarUploader < CarrierWave::Uploader::Base
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
    def filename
-debugger
      old_extension = File.extname(super)
      if old_extension.present? and old_extension.downcase == ".caf"
        super.chomp(File.extname(super)) + '.WAV'
