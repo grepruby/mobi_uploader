@@ -8,15 +8,15 @@ module CarrierWave
       end
     end
  
-    def resample( bitrate )
+    def resample
       directory = File.dirname( current_path )
-      tmp_path   = File.join( directory, "tmpfile" )
+      tmp_path = File.join( directory, "tmpfile" )
+      new_path = File.join( directory, filename )
       FileUtils.mv( current_path, tmp_path )
       file = ::FFMPEG::Movie.new(tmp_path)
-      file.transcode(directory + "/format_conversion_#{filename}")
-
+      file.transcode(new_path)
+      FileUtils.mv( new_path,current_path )
       File.delete( tmp_path )
-
     end
   end
 end

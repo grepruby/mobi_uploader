@@ -22,9 +22,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
-  version :format_conversion, :if => :is_caf_file? do
-    process :resample => "128k"
-  end
+  process :resample, :if => :is_caf_file?
 
   def is_caf_file? asset
     asset.extension.downcase == "caf"
